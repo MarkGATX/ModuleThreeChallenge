@@ -1,100 +1,98 @@
-# 03 JavaScript: Password Generator
+# Third challenge for the UT-Austin Full Stack Development Bootcamp
 
-## Your Task
+## Develop a Random Password Generator 
 
-This week's Challenge requires you to modify starter code to create an application that enables employees to generate random passwords based on criteria that they’ve selected. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean and polished, responsive user interface that adapts to multiple screen sizes.
 
-The password can include special characters. If you’re unfamiliar with these, see this [list of password special characters](https://www.owasp.org/index.php/Password_special_characters) from the OWASP Foundation.
+___
 
-## User Story
 
-```
-AS AN employee with access to sensitive data
-I WANT to randomly generate a password that meets certain criteria
-SO THAT I can create a strong password that provides greater security
-```
+This is the first week of Javascript lessons and our first challenge is to take the basics that we've learned and use them to create a function that will generate a random password. It's essentially a string of random characters but the end user can make choices to determine the final result.
 
-## Acceptance Criteria
 
-```
-GIVEN I need a new, secure password
-WHEN I click the button to generate a password
-THEN I am presented with a series of prompts for password criteria
-WHEN prompted for password criteria
-THEN I select which criteria to include in the password
-WHEN prompted for the length of the password
-THEN I choose a length of at least 8 characters and no more than 128 characters
-WHEN asked for character types to include in the password
-THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-WHEN I answer each prompt
-THEN my input should be validated and at least one character type should be selected
-WHEN all prompts are answered
-THEN a password is generated that matches the selected criteria
-WHEN the password is generated
-THEN the password is either displayed in an alert or written to the page
-```
+![Screenshot of Password Generator](./images/Password%20Generator%20Homepage.jpg)
 
-## Mock-Up
 
-The following image shows the web application's appearance and functionality:
+___
 
-![The Password Generator application displays a red button to "Generate Password".](./Assets/03-javascript-homework-demo.png)
 
-## Grading Requirements
 
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
+## How to use
 
-This Challenge is graded based on the following criteria: 
+On page load, you're confronted with a large red button that says "Generate." One you push that button, a series of system dialogs will pop up asking you for different parameters in building your password.
 
-### Technical Acceptance Criteria: 40%
+The first option is for the length of the password, which can be from 8 to 128 characters.
 
-* Satisfies all of the preceding acceptance criteria.
+The second option is whether you want to include lower case letters or not. By clicking "OK" in the system dialog, you're saying you want to include lower case letters and that at least one will be included in the final password.
 
-### Deployment: 32%
+The exact same process occurs for three more options: upper case letters, numbers, and special characters.
 
-* Application deployed at live URL.
+Once all of the selections are made, the function completes and populates the text-box in the center of the screen with your newly generated password.
 
-* Application loads with no errors.
+If there are any errors in selections made, an alert will pop up to let you know about the error and you'll be able to click the "Generate" button to try again.
 
-* Application GitHub URL submitted.
 
-* GitHub repository that contains application code.
+___
 
-### Application Quality: 15%
 
-* Application user experience is intuitive and easy to navigate.
+## Changes Made and Lessons Learned
 
-* Application user interface style is clean and polished.
+- I put in some logic to verify valid user input, but the function just quit without much fanfare and little to remind the end user what the problem was in the first place. In order to make a slightly better user experience, I returned some additional text when exiting the function that would populate the main page with additional prompts to help use the tool.
 
-* Application resembles the mock-up functionality provided in the Challenge instructions.
+![Password Generator showing help text for invalid password length](./images/Password%20Gen%20Wrong%20Size%20input.jpg)![Password Generator showing help text for not selecting any valid characters](./images/Password%20Gen%20no%20selection%20error.jpg)
 
-### Repository Quality: 13%
+*Help text for incorrect password length and for not selecting any character types *
 
-* Repository has a unique name.
+ - My first plan was to use long strings of characters as the seeds for the password generator. I went ahead and made those strings until I started to wonder about special characters. I wasn't sure if the `\` that's used to escape characters from strings would be counted as part of the index when trying to use methods like `charAt()`. So while I considered switching over to arrays, I decided to see if I could figure it out. So after a few rounds of `console.log()` I learned that javvascript doesn't include them so I can get an accurate index of the string. So continue with strings I did.
 
-* Repository follows best practices for file structure and naming conventions.
+- At the end of the function I ended up with a password that was "mostly" random. In order to ensure there was at least one of each character element the end user selected, I immediately added one random character to the final password string. After those initial four selections everything, else was completely random. But those first four characters meant it wasn't random enough. I initially ran into some problems with shuffling the contents of the string, so I ended up finally using arrays. I converted the string into an array using `.split` and randomly redistributed each letter into a new string using the `.splice` method. Now the password is truly random.
 
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
+- I added initial text to the HTML to give the user a prompt to press the "Generate" button.
 
-* Repository contains multiple descriptive commit messages.
 
-* Repository contains quality readme file with description, screenshot, and link to deployed application.
+___
 
-## Review
 
-You are required to submit the following for review:
 
-* The URL of the deployed application.
+## Possible Future Changes
 
-* The URL of the GitHub repository, with a unique name and a readme describing the project.
+- I would love to find a way to have styled alerts instead of system alerts for the prompts for user input. That feels like later in the Bootcamp.
+- Add a final round of validation to quadruple check that the final password meets all the criteria
 
-- - -
-© 2022 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
+
+___
+
+
+
+## Credits
+
+
+The original concept of the page, including the HTML framework and lines 1-12 of the script.js file was created by staff of the UT Austin Full Stack Development Bootcamp. Thanks to Leah, Ian, Negin, Diem, and all the students who work with me daily to keep improving. 
+
+
+___
+
+
+
+## License
+
+MIT License
+
+Copyright (c) 2020 Mark Gardner
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
